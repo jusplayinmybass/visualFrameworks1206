@@ -31,8 +31,25 @@ window.addEventListener("DOMContentLoaded", function(){
         }
         selectLi.appendChild(makeSelect);
         
-  
     };
+    //storeData function
+    function storeData(){
+        var id = Math.floor(Math.random()*100000001);
+        //Gather up all form field values in an object
+        //Object contains an array that contains form label and input value
+        var item            = {};
+            item.fname      = ["First Name:", $('fname').value];
+            item.lname      = ["Last Name:", $('lname').value];
+            item.email      = ["Email:", $('email').value];
+            item.birth      = ["Birthday:", $('birth').value];
+            item.level      = ["Level:", $('levels').value]; //Make sure the proper "level" is in the code
+ //           item.skills     = ["Skills to Develop", skillValue];
+            item.other      = ["Other", $('other').value];
+            item.time       = ["Time", $('time').value];
+        //Save the data into Local Storage. Use Stringify to convert object to string
+        localStorage.setItem(id, JSON.stringify(item));
+        alert("Contact Saved!");
+    }
     
     makeLevel();
 /*

@@ -4,17 +4,19 @@
 
 // Wait until the DOM is Ready
 window.addEventListener("DOMContentLoaded", function(){
-    
+      
+
     //getElementByID Function
     function $(x){
         var theElement = document.getElementByID(x);
         return theElement;
+       
     };
      //variable Defaults
     var studentLevel = ['--Choose One--', 'Beginner', 'Intermediate', 'Advanced', 'Seasoned Professional'];
-    
     //Create Select Field Elements
-    function makeLevel (){
+
+    function makeLevel(){
         var formTag = document.getElementsByTagName('form'),
             selectLi = $('select'),
             makeSelect = document.createElement('select');
@@ -28,9 +30,9 @@ window.addEventListener("DOMContentLoaded", function(){
         }
         selectLi.appendChild(makeSelect);
         
-        
+  
     };
-   
+    
 /*
     //Set Links and Submit Click events
     var displayLink = $('displayLink');

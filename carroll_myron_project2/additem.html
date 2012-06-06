@@ -32,17 +32,9 @@
                 </ul>
             </fieldset>
             <fieldset>
-                <legend>Playng Information</legend>
+                <legend>Playing Information</legend>
                 <ul>
-                    <li><label for="level">Level</label>
-                        <select id="level">
-                            <option value="choose">--Choose One--</option>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                            <option value="seasoned">Seasoned Professional</option>
-                        </select>
-		    </li>
+                    <li id="select"><label for="level">What is your Skill Level?</label></li>
                     <li>What Skills Would You Like To Develop? Check all that apply.
                         <ul>
                             <li><input type="checkbox" value="Sight Reading" id="reading" /><label for="reading">Sight Reading</label></li>
@@ -60,12 +52,13 @@
                         
                 </ul>
             </fieldset>
-	</form>
-        <ul>
+	    <ul>
 	    <li><input type="submit" id="submit" value="Submit" /></li>
 	</ul>
-			<a href id="#">Submit Info</a>
-			<a href id="#">Clear Form</a>
+			<a href id="displayLink">Display Info</a>
+			<a href id="clearLink">Clear Form</a>
+	</form>
+       <script src="JS/main.js" type="text/javascript"></script> 
     </body>
     
     

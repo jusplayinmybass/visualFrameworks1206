@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
     //getElementByID Function
     function $(x){
-        var theElement = document.getElementByID(x);
+        var theElement = document.getElementById(x);
         return theElement;
        
     };
@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", function(){
         var formTag = document.getElementsByTagName('form'),
             selectLi = $('select'),
             makeSelect = document.createElement('select');
-            makeSelect.setAttribute('id', 'level');
+            makeSelect.setAttribute('id', 'levels');
         for(var i=0, j=studentLevel.length; i<j; i++){
             var makeOption = document.createElement('option');
             var optText = studentLevel[i];

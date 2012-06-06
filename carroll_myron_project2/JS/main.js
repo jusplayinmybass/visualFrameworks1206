@@ -27,12 +27,14 @@ window.addEventListener("DOMContentLoaded", function(){
             makeOption.setAttribute("value", optText);
             makeOption.innerHTML = optText;
             makeSelect.appendChild(makeOption);
+            
         }
         selectLi.appendChild(makeSelect);
         
   
     };
     
+    makeLevel();
 /*
     //Set Links and Submit Click events
     var displayLink = $('displayLink');

@@ -44,13 +44,12 @@ window.addEventListener("DOMContentLoaded", function(){
         }
     }
     //storeData function
-    function storeData(){
+     function storeData(){
         var id = Math.floor(Math.random()*100000001);
         //Gather up all form field values in an object
         //Object contains an array that contains form label and input value
         getCheckedBoxValues();
-        alert("Javascript Works!!!!!!!")
-        var item            = {};
+           var item            = {};
             item.fname      = ["First Name:", $('fname').value];
             item.lname      = ["Last Name:", $('lname').value];
             item.email      = ["Email:", $('email').value];
@@ -60,17 +59,44 @@ window.addEventListener("DOMContentLoaded", function(){
             item.other      = ["Other", $('other').value];
             item.time       = ["Time", $('time').value];
         //Save the data into Local Storage. Use Stringify to convert object to string
-        localStorage.setItem(id, JSON.stringify(item));
+        localStorage.setItem(id, JSON.stringify(item)); 
         alert("Contact Saved!");
     }
-    
+
+        function getData(){
+          //Write Data from local storage to the browser
+          var makeDiv = document.createElement('div');
+          makeDiv.setAttribute('id', 'items');
+          var makeList = document.createElement('ul');
+          makeDiv.appendChild(makeList);
+          document.body.appendChild(makeDiv);
+          for(var i=0, j=localStorage.length; i<j; i++){
+            var makeLi = document.createElement('li');
+            makeList.appendChild(makeLi);
+            var key = localStorage.key[i];
+            var value = localStorage.getItem(key);
+            var obj = JSON.parse(value); //Convert string from localStorage back into an object with JSON.parse.
+            var makeSubList = document.createElement('ul');
+            makeLi.appendChild(makeSubList);
+            for (var n in obj){
+                var makeSubLi = document.createElement('li');
+                makeSubList.appendChild(makeSubLi);
+                var optSubText = obj[n][0] + " " + obj[n][1];
+                makeSubLi.innerHTML = optSubText;
+            }
+            
+          }
+          
+            
+          
+        };
     makeLevel();
-/*
+
     //Set Links and Submit Click events
     var displayLink = $('displayLink');
-    displayLink.addEventListener('click', getData);
+//    displayLink.addEventListener('click', getData);
     var clearLink = $('clearLink');
-    clearLink.addEventListener('click', clearLocal);
+//    clearLink.addEventListener('click', clearLocal);
     var save = $('submit');
-    save.addEventListener('click', storeData);*/
+    save.addEventListener('click', storeData);
 });

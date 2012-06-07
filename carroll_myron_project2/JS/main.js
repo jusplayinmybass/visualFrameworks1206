@@ -43,6 +43,27 @@ window.addEventListener("DOMContentLoaded", function(){
             }
         }
     }
+    
+    //Toggle Controls
+    function toggleControls(n){
+        switch(n){
+            case "on":
+                $('contactForm').style.display = "none";
+                $('clearLink').style.display = "inline";
+                $('displayLink').style.display = "none";
+                $('addNew').style.display = "inline";
+                break;
+            case "off":
+                $('contactForm').style.display = "block";
+                $('clearLink').style.display = "inline";
+                $('displayLink').style.display = "inline";
+                $('addNew').style.display = "none";
+                $('items').style.display = "none";
+                break;
+            default:
+                return false;
+        }
+    }
     //storeData function
      function storeData(){
         var id = Math.floor(Math.random()*100000001);
@@ -64,12 +85,14 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 
         function getData(){
+            toggleControls("on"); 
           //Write Data from local storage to the browser
           var makeDiv = document.createElement('div');
           makeDiv.setAttribute('id', 'items');
           var makeList = document.createElement('ul');
           makeDiv.appendChild(makeList);
           document.body.appendChild(makeDiv);
+          $('items').style.display = "display"; 
           for(var i=0, j=localStorage.length; i<j; i++){
             var makeLi = document.createElement('li');
             makeList.appendChild(makeLi);

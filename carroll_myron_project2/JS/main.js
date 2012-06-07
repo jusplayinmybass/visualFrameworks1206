@@ -85,7 +85,10 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 
         function getData(){
-            toggleControls("on"); 
+            toggleControls("on");
+            if(localStorage.length === 0){
+                alert("There is no Data Saved!")
+            }
           //Write Data from local storage to the browser
           var makeDiv = document.createElement('div');
           makeDiv.setAttribute('id', 'items');
@@ -113,13 +116,24 @@ window.addEventListener("DOMContentLoaded", function(){
             
           
         };
+        
+        function clearLocal(){
+            if (localStorage.length ===0){
+                alert("There is no Data to Clear!");
+            } else {
+                localStorage.clear();
+                alert("All Contacts are Deleted!");
+                window.location.reload();
+                return false;
+            }
+        }
     makeLevel();
 
     //Set Links and Submit Click events
     var displayLink = $('displayLink');
-//    displayLink.addEventListener('click', getData);
+    displayLink.addEventListener('click', getData);
     var clearLink = $('clearLink');
-//    clearLink.addEventListener('click', clearLocal);
+    clearLink.addEventListener('click', clearLocal);
     var save = $('submit');
     save.addEventListener('click', storeData);
 });

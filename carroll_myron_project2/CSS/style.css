@@ -8,24 +8,25 @@
 p{	
 	font-family:  Arial;
 	color: #888888;
-	background: #000
+	background: #0000BB
 }
 
 a{
-	color: #333;
-	background-color: #CCCCCC;
+	color: #888888;
+	background-color: #0000BB;
 }
 h1{
 	font: 30px Arial;
 	font-weight: bold;
 	border: 10px solid #aaa;
-	color: #000;
-	background-color: #CCCCCC;
+	color: #888888;
+	background-color: #0000BB;
 	padding: 10px;
 }
 
-fieldset {
+form {
 	margin: 30px;
+	background; 0000BB
 }
 
 label {

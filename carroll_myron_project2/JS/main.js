@@ -87,8 +87,8 @@ window.addEventListener("DOMContentLoaded", function(){
         function getData(){
             toggleControls("on");
             if(localStorage.length === 0){
-                alert("There is no Data Saved!")
-            }
+                alert("There is no Data Saved!");
+            };
           //Write Data from local storage to the browser
           var makeDiv = document.createElement('div');
           makeDiv.setAttribute('id', 'items');

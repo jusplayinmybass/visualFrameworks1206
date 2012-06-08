@@ -36,7 +36,7 @@ window.addEventListener("DOMContentLoaded", function () {
     
     //Find value of Checked Boxed
     function getCheckedBoxValues(){
-        var box = document.form[0].skill;
+        var box = document.forms[0].skill;
         for(var i=0; i<box.length; i++){
             if(box[i].checked){
                 skillValue = box[i].value;
@@ -76,7 +76,7 @@ window.addEventListener("DOMContentLoaded", function () {
             item.email      = ["Email:", $('email').value];
             item.birth      = ["Birthday:", $('birth').value];
             item.level      = ["Level:", $('select').value]; 
-          //  item.skills     = ["Skills to Develop", skillValue];
+            item.skills     = ["Skills to Develop", skillValue];
             item.other      = ["Other", $('other').value];
             item.time       = ["Time", $('time').value];
         //Save the data into Local Storage. Use Stringify to convert object to string
@@ -99,7 +99,7 @@ window.addEventListener("DOMContentLoaded", function () {
           for(var i=0, j=localStorage.length; i<j; i++){
             var makeLi = document.createElement('li');
             makeList.appendChild(makeLi);
-            var key = localStorage.key[i];
+            var key = localStorage.key(i);
             var value = localStorage.getItem(key);
             var obj = JSON.parse(value); //Convert string from localStorage back into an object with JSON.parse.
             var makeSubList = document.createElement('ul');

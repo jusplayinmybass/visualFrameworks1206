@@ -3,11 +3,11 @@
 // Class: Visual Frameworks
 
 // Wait until the DOM is Ready
-window.addEventListener("DOMContentLoaded", function(){
+window.addEventListener("DOMContentLoaded", function () {
       
 
     //getElementByID Function
-    function $(x){
+    function $(x) {
         var theElement = document.getElementById(x);
         return theElement;
        
@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", function(){
         skillValue;
     //Create Select Field Elements
 
-    function makeLevel(){
+    function makeLevel () {
         var formTag = document.getElementsByTagName('form'),
             selectLi = $('select'),
             makeSelect = document.createElement('select');
@@ -75,8 +75,8 @@ window.addEventListener("DOMContentLoaded", function(){
             item.lname      = ["Last Name:", $('lname').value];
             item.email      = ["Email:", $('email').value];
             item.birth      = ["Birthday:", $('birth').value];
-            item.level      = ["Level:", $('level').value]; //Make sure the proper "level" is in the code
-            item.skills     = ["Skills to Develop", skillValue];
+            item.level      = ["Level:", $('select').value]; 
+          //  item.skills     = ["Skills to Develop", skillValue];
             item.other      = ["Other", $('other').value];
             item.time       = ["Time", $('time').value];
         //Save the data into Local Storage. Use Stringify to convert object to string

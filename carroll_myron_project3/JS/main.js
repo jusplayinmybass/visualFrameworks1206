@@ -126,7 +126,7 @@ window.addEventListener("DOMContentLoaded", function () {
             editLink.href= '#';
             editLink.key = key;
             var editText = "Edit Contact";
-            //editLink.addEventListener('click', editItem)
+            editLink.addEventListener('click', editItem);
             editLink.innerHTML = editText;
             linksLi.appendChild(editLink);
             
@@ -145,6 +145,25 @@ window.addEventListener("DOMContentLoaded", function () {
             
             
         };
+        
+        function editItem(){
+            //Grab Item from Local Storage
+            var value = localStorage.getItem(this.key);
+            var item = JSON.parse(value);
+            
+            //Show the form
+            toggleControls('off');
+            
+            //Populate form with stored values
+            //$('fname').value = item.fname[1];
+            $('lname').value = item.lname[1];
+            $('email').value = item.email[1];
+            $('birth').value = item.birth[1];
+            $('select').value = item.level[1];
+            //$('skills').value = item.group[1];
+            $('other').value = item.other[1];
+            $('time').value = item.time[1];
+        }
         function clearLocal(){
             if (localStorage.length ===0){
                 alert("There is no Data to Clear!");

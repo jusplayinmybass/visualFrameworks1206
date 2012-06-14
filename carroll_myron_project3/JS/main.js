@@ -112,11 +112,11 @@ window.addEventListener("DOMContentLoaded", function () {
                 makeSubLi.innerHTML = optSubText;
                 makeSubList.appendChild(linksLi);
             }
-            
+            makeItemLinks(localStorage.key(i), linksLi); //Create edit and delete buttons for each item in Local Storage
             
           }
           
-          makeItemLinks(localStorage.key(i), linksLi); //Create edit and delete buttons for each item in Local Storage  
+            
           
         };
         //Create Edit and Delete links for each stored item when displayed
@@ -155,7 +155,7 @@ window.addEventListener("DOMContentLoaded", function () {
             toggleControls('off');
             
             //Populate form with stored values
-            //$('fname').value = item.fname[1];
+            $('fname').value = item.fname[1];
             $('lname').value = item.lname[1];
             $('email').value = item.email[1];
             $('birth').value = item.birth[1];
@@ -163,7 +163,7 @@ window.addEventListener("DOMContentLoaded", function () {
             //$('skills').value = item.group[1];
             $('other').value = item.other[1];
             $('time').value = item.time[1];
-        }
+        };
         function clearLocal(){
             if (localStorage.length ===0){
                 alert("There is no Data to Clear!");
@@ -173,7 +173,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 window.location.reload();
                 return false;
             }
-        }
+        };
     makeLevel();
 
     //Set Links and Submit Click events

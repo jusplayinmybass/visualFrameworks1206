@@ -1,5 +1,5 @@
 // Author: Myron Carroll
-// Title: Assignment 2 JavaScript
+// Title: Assignment 3 JavaScript
 // Class: Visual Frameworks
 
 // Wait until the DOM is Ready
@@ -98,6 +98,7 @@ window.addEventListener("DOMContentLoaded", function () {
           $('items').style.display = "display"; 
           for(var i=0, j=localStorage.length; i<j; i++){
             var makeLi = document.createElement('li');
+            var linksLi = document.createElement('li');
             makeList.appendChild(makeLi);
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
@@ -109,14 +110,41 @@ window.addEventListener("DOMContentLoaded", function () {
                 makeSubList.appendChild(makeSubLi);
                 var optSubText = obj[n][0] + " " + obj[n][1];
                 makeSubLi.innerHTML = optSubText;
+                makeSubList.appendChild(linksLi);
             }
+            
             
           }
           
-            
+          makeItemLinks(localStorage.key(i), linksLi); //Create edit and delete buttons for each item in Local Storage  
           
         };
-        
+        //Create Edit and Delete links for each stored item when displayed
+        function makeItemLinks(key, linksLi ){
+            //Add edit single item link
+            var editLink = document.createElement('a');
+            editLink.href= '#';
+            editLink.key = key;
+            var editText = "Edit Contact";
+            //editLink.addEventListener('click', editItem)
+            editLink.innerHTML = editText;
+            linksLi.appendChild(editLink);
+            
+            //Add Line Break
+            var breakTag = document.createElement('br');
+            linksLi.appendChild(breakTag);
+            
+            //Add Delete Single Item Link
+            var deleteLink = document.createElement('a');
+            deleteLink.href = '#';
+            deleteLink.key = key;
+            var deleteText = "Delete Contact";
+            //deleteLink.addEventListener('click', deleteItem);
+            deleteLink.innerHTML = deleteText;
+            linksLi.appendChild(deleteLink);
+            
+            
+        };
         function clearLocal(){
             if (localStorage.length ===0){
                 alert("There is no Data to Clear!");

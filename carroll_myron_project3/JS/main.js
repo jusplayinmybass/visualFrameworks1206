@@ -14,7 +14,9 @@ window.addEventListener("DOMContentLoaded", function () {
     };
      //variable Defaults
     var studentLevel = ['--Choose One--', 'Beginner', 'Intermediate', 'Advanced', 'Seasoned Professional'],
-        skillValue;
+        skillValue,
+        errMsg = $('errors'),
+        save = $('submit');
     //Create Select Field Elements
 
     function makeLevel () {
@@ -65,8 +67,16 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     }
     //storeData function
-     function storeData(){
+     function storeData(key){
+        //If there is no key, this means this is a brand new item and we need a new key.
+        if(!key){
         var id = Math.floor(Math.random()*100000001);
+        }else{
+            //Set the is to the existing key that we are editing so it will save over the data
+            //Same key that was passed from editSubmit event handler
+            //to the validate function and then passed here, into the storeData function.
+            id = key;
+        }
         //Gather up all form field values in an object
         //Object contains an array that contains form label and input value
         getCheckedBoxValues();
@@ -112,6 +122,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 makeSubLi.innerHTML = optSubText;
                 makeSubList.appendChild(linksLi);
             }
+            
             makeItemLinks(localStorage.key(i), linksLi); //Create edit and delete buttons for each item in Local Storage
             
           }
@@ -129,7 +140,7 @@ window.addEventListener("DOMContentLoaded", function () {
             editLink.addEventListener('click', editItem);
             editLink.innerHTML = editText;
             linksLi.appendChild(editLink);
-            
+          
             //Add Line Break
             var breakTag = document.createElement('br');
             linksLi.appendChild(breakTag);
@@ -139,7 +150,7 @@ window.addEventListener("DOMContentLoaded", function () {
             deleteLink.href = '#';
             deleteLink.key = key;
             var deleteText = "Delete Contact";
-            //deleteLink.addEventListener('click', deleteItem);
+            deleteLink.addEventListener('click', deleteItem);
             deleteLink.innerHTML = deleteText;
             linksLi.appendChild(deleteLink);
             
@@ -163,7 +174,27 @@ window.addEventListener("DOMContentLoaded", function () {
             //$('skills').value = item.group[1];
             $('other').value = item.other[1];
             $('time').value = item.time[1];
+            
+            //Remove initial Listener
+            save.removeEventListener('click', storeData);
+            
+            //change submit button to edit button
+            $('submit').value = 'Edit Contact';
+            var editSubmit = $('submit');
+            //Save key value in this functionas a property of the editSubmit event so we can use the value when we dave the data we edited.
+            editSubmit.addEventListener('click', validate);
+            editSubmit.key = this.key;
         };
+        
+        function deleteItem(){
+            var ask = confirm("Are You Sure You Want To Delete This Contact?");
+            if(ask){
+                localStorage.removeItem(this.key);
+                window.location.reload();
+            }else{
+                alert("Contact Was NOT Deleted.");
+            }
+        }
         function clearLocal(){
             if (localStorage.length ===0){
                 alert("There is no Data to Clear!");
@@ -174,6 +205,63 @@ window.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
         };
+        
+        function validate(e){
+            //Define the elements that we want to check
+            var getFname = $('fname');
+            var getLname = $('lname');
+            var getEmail = $('email');
+            var getLevel = $('select');
+            
+            //reset error messages
+            errMsg.innerHTML = "";
+            getLevel.style.border = "1px solid black";
+            getFname.style.border = "1px solid black";
+            getLname.style.border = "1px solid black";
+            getEmail.style.border = "1px solid black";
+            //Get Error Messages
+            var messageAry = [];
+            //Level validation
+            if(getLevel.value === '--Choose One--'){
+                var levelError = "Please Choose a Level";
+                getLevel.style.border = "3px solid red";
+                messageAry.push(levelError);
+            };
+            //First Name Validation
+            if (getFname.value === ""){
+                var fNameError = "Please Enter Your First Name";
+                getFname.style.border = "3px solid red";
+                messageAry.push(fNameError);
+            }
+            //Last Name Validation
+            if (getLname.value === " "){
+                var lNameError = "Please Enter Your First Name";
+                getLname.style.border = "3px solid red";
+                messageAry.push(lNameError);
+            }
+            //Email Validation
+            var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(!(re.exe(getEmail.value))){
+                var emailError = "Please Enter A Valid Email Address";
+                getEmail.style.border = "3px solid red";
+                messageAry.push(emailError);
+            }
+             //If there were errors display them on the screen
+             if (messageAry.length >=1){
+                for (var i = 0, j = messageAry.length; i < j; i++){
+                     var txt = document.createElement('li');
+                     txt.innerHTML = messageAry[i];
+                     errMsg.appendChild(txt);
+                }
+                e.preventDefault();
+                return false; 
+             }else{
+                //If all is ok Save our Data. Send the key value from editData function
+                //Remember this key value was passed through the editSubmit listener as a property.
+                 storeData(this.key);
+             }
+            
+        };
     makeLevel();
 
     //Set Links and Submit Click events
@@ -181,6 +269,6 @@ window.addEventListener("DOMContentLoaded", function () {
     displayLink.addEventListener('click', getData);
     var clearLink = $('clearLink');
     clearLink.addEventListener('click', clearLocal);
-    var save = $('submit');
-    save.addEventListener('click', storeData);
+    
+    save.addEventListener('click', validate);
 });

@@ -215,18 +215,11 @@ window.addEventListener("DOMContentLoaded", function () {
             
             //reset error messages
             errMsg.innerHTML = "";
-            getLevel.style.border = "1px solid black";
             getFname.style.border = "1px solid black";
             getLname.style.border = "1px solid black";
             getEmail.style.border = "1px solid black";
             //Get Error Messages
             var messageAry = [];
-            //Level validation
-            if(getLevel.value === '--Choose One--'){
-                var levelError = "Please Choose a Level";
-                getLevel.style.border = "3px solid red";
-                messageAry.push(levelError);
-            };
             //First Name Validation
             if (getFname.value === ""){
                 var fNameError = "Please Enter Your First Name";
@@ -234,8 +227,8 @@ window.addEventListener("DOMContentLoaded", function () {
                 messageAry.push(fNameError);
             }
             //Last Name Validation
-            if (getLname.value === " "){
-                var lNameError = "Please Enter Your First Name";
+            if (getLname.value === ""){
+                var lNameError = "Please Enter Your Last Name";
                 getLname.style.border = "3px solid red";
                 messageAry.push(lNameError);
             }

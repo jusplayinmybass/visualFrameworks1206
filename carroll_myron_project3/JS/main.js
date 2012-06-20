@@ -38,10 +38,12 @@ window.addEventListener("DOMContentLoaded", function () {
     
     //Find value of Checked Boxed
     function getCheckedBoxValues(){
+        var holdValues = [];
         var box = document.forms[0].skill;
         for(var i=0; i<box.length; i++){
             if(box[i].checked){
                 var skillValue = box[i].value;
+                holdValues.push(skillValue);
             }
         }
     }

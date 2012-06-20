@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     function makeLevel () {
         var formTag = document.getElementsByTagName('form'),
-            selectLi = $('select'),
+            selectLi = $('levels'),
             makeSelect = document.createElement('select');
             makeSelect.setAttribute('id', 'levels');
         for(var i=0, j=studentLevel.length; i<j; i++){
@@ -41,7 +41,7 @@ window.addEventListener("DOMContentLoaded", function () {
         var box = document.forms[0].skill;
         for(var i=0; i<box.length; i++){
             if(box[i].checked){
-                skillValue = box[i].value;
+                var skillValue = box[i].value;
             }
         }
     }
@@ -85,7 +85,7 @@ window.addEventListener("DOMContentLoaded", function () {
             item.lname      = ["Last Name:", $('lname').value];
             item.email      = ["Email:", $('email').value];
             item.birth      = ["Birthday:", $('birth').value];
-            item.level      = ["Level:", $('select').value]; 
+            item.level      = ["Level:", $('levels').value]; 
             item.skills     = ["Skills to Develop", skillValue];
             item.other      = ["Other", $('other').value];
             item.time       = ["Time", $('time').value];
@@ -170,7 +170,7 @@ window.addEventListener("DOMContentLoaded", function () {
             $('lname').value = item.lname[1];
             $('email').value = item.email[1];
             $('birth').value = item.birth[1];
-            $('select').value = item.level[1];
+            $('levels').value = item.level[1];
             //$('skills').value = item.group[1];
             $('other').value = item.other[1];
             $('time').value = item.time[1];
@@ -180,7 +180,7 @@ window.addEventListener("DOMContentLoaded", function () {
             
             //change submit button to edit button
             $('submit').value = 'Edit Contact';
-            var editSubmit = $('submit');
+            var editSubmit = $('levels');
             //Save key value in this functionas a property of the editSubmit event so we can use the value when we dave the data we edited.
             editSubmit.addEventListener('click', validate);
             editSubmit.key = this.key;
@@ -211,7 +211,7 @@ window.addEventListener("DOMContentLoaded", function () {
             var getFname = $('fname');
             var getLname = $('lname');
             var getEmail = $('email');
-            var getLevel = $('select');
+            var getLevel = $('levels');
             
             //reset error messages
             errMsg.innerHTML = "";
@@ -240,8 +240,8 @@ window.addEventListener("DOMContentLoaded", function () {
                 messageAry.push(lNameError);
             }
             //Email Validation
-            var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if(!(re.exe(getEmail.value))){
+            var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if(!(re.exec(getEmail.value))){
                 var emailError = "Please Enter A Valid Email Address";
                 getEmail.style.border = "3px solid red";
                 messageAry.push(emailError);

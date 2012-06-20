@@ -35,7 +35,7 @@
             <fieldset>
                 <legend>Playing Information</legend>
                 <ul>
-                    <li id="select"><label for="level">What is your Skill Level?  </label></li><!--This is what links to JS to dynamically input the select field information-->
+                    <li id="levels"><label for="level">What is your Skill Level?  </label></li><!--This is what links to JS to dynamically input the select field information-->
                     <li>What Skills Would You Like To Develop? Check all that apply.
                         <ul>
                             <li><input type="checkbox" value="Sight Reading" id="reading" name="skill" /><label for="reading">Sight Reading</label></li>
@@ -47,11 +47,12 @@
                         </ul>
                     </li>
                     <li><label for="time">How Long have You Been Playing Bass?  </label><input type="range" min="1" max="15" name="out" type="range" id="time" /></li>
-                        <div>If less than 1 year just put 1. If more than 15 years, just put 15.</div>
+                        
                     
                         
                         
                 </ul>
+		<div>If less than 1 year just put 1. If more than 15 years, just put 15.</div>
             </fieldset>
 	    <ul>
 		<li><input type="submit" id="submit" value="Submit" /></li>

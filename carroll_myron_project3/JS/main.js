@@ -118,6 +118,7 @@ window.addEventListener("DOMContentLoaded", function () {
             var obj = JSON.parse(value); //Convert string from localStorage back into an object with JSON.parse.
             var makeSubList = document.createElement('ul');
             makeLi.appendChild(makeSubList);
+            getImage(obj.group[1], makeSubList);
             for (var n in obj){
                 var makeSubLi = document.createElement('li');
                 makeSubList.appendChild(makeSubLi);
@@ -132,8 +133,15 @@ window.addEventListener("DOMContentLoaded", function () {
           
             
           
-        };
-        
+        }
+        //Get the image for the right category
+        function getImage(catName, makeSubList){
+            var imageLi = document.createElement('li');
+            makeSubList.appendChild(imageLi);
+            var newImg = document.createElement('img');
+            var setSrc = newImg.setAttribute("src", "images/"+ catName +".png");
+            imageLi.appendChild(newImg);
+        }
         //Auto Populate Local Storage
         function autoFillData(){
             //The actual JSON Object data required for this to work is coming form our json.js file which is loaded form the HTML page

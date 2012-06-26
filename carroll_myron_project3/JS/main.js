@@ -1,5 +1,5 @@
 // Author: Myron Carroll
-// Title: Assignment 4 JavaScript
+// Title: Assignment 3 JavaScript
 // Class: Visual Frameworks
 
 // Wait until the DOM is Ready
@@ -99,8 +99,7 @@ window.addEventListener("DOMContentLoaded", function () {
         function getData(){
             toggleControls("on");
             if(localStorage.length === 0){
-                alert("There is no Data In Local Storage so Default Data Was Added!");
-                autoFillData();
+                alert("There is no Data Saved!");
             };
           //Write Data from local storage to the browser
           var makeDiv = document.createElement('div');
@@ -118,7 +117,6 @@ window.addEventListener("DOMContentLoaded", function () {
             var obj = JSON.parse(value); //Convert string from localStorage back into an object with JSON.parse.
             var makeSubList = document.createElement('ul');
             makeLi.appendChild(makeSubList);
-            getImage(obj.group[1], makeSubList);
             for (var n in obj){
                 var makeSubLi = document.createElement('li');
                 makeSubList.appendChild(makeSubLi);
@@ -133,24 +131,7 @@ window.addEventListener("DOMContentLoaded", function () {
           
             
           
-        }
-        //Get the image for the right category
-        function getImage(catName, makeSubList){
-            var imageLi = document.createElement('li');
-            makeSubList.appendChild(imageLi);
-            var newImg = document.createElement('img');
-            var setSrc = newImg.setAttribute("src", "images/"+ catName +".png");
-            imageLi.appendChild(newImg);
-        }
-        //Auto Populate Local Storage
-        function autoFillData(){
-            //The actual JSON Object data required for this to work is coming form our json.js file which is loaded form the HTML page
-            //Store JSON Object into Local Storage
-            for(var n in json){
-                var id = Math.floor(Math.random()*100000001);
-                localStorage.setItem(id, JSON.stringify(json[n]));
-            }
-        }
+        };
         //Create Edit and Delete links for each stored item when displayed
         function makeItemLinks(key, linksLi ){
             //Add edit single item link

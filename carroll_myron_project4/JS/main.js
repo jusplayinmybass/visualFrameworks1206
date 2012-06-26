@@ -1,5 +1,5 @@
 // Author: Myron Carroll
-// Title: Assignment 3 JavaScript
+// Title: Assignment 4 JavaScript
 // Class: Visual Frameworks
 
 // Wait until the DOM is Ready
@@ -36,17 +36,19 @@ window.addEventListener("DOMContentLoaded", function () {
         
     };
     
-    //Find value of Checked Boxed
+    //Find value of Checked Boxes
     function getCheckedBoxValues(){
         var holdValues = [];
         var box = document.forms[0].skill;
         for(var i=0; i<box.length; i++){
             if(box[i].checked){
-                var skillValue = box[i].value;
+                skillValue = box[i].value;
                 holdValues.push(skillValue);
             }
         }
+        //return holdValues;
     }
+
     
     //Toggle Controls
     function toggleControls(n){
@@ -88,9 +90,9 @@ window.addEventListener("DOMContentLoaded", function () {
             item.email      = ["Email:", $('email').value];
             item.birth      = ["Birthday:", $('birth').value];
             item.level      = ["Level:", $('levels').value]; 
-            item.skills     = ["Skills to Develop", skillValue];
-            item.other      = ["Other", $('other').value];
-            item.time       = ["Time", $('time').value];
+            item.skills     = ["Skills to Develop:", skillValue];
+            item.other      = ["Other:", $('other').value];
+            item.time       = ["Time:", $('time').value];
         //Save the data into Local Storage. Use Stringify to convert object to string
         localStorage.setItem(id, JSON.stringify(item)); 
         alert("Contact Saved!");
@@ -99,7 +101,8 @@ window.addEventListener("DOMContentLoaded", function () {
         function getData(){
             toggleControls("on");
             if(localStorage.length === 0){
-                alert("There is no Data Saved!");
+                alert("There is no Data In Local Storage so Default Data Was Added!");
+                autoFillData();
             };
           //Write Data from local storage to the browser
           var makeDiv = document.createElement('div');
@@ -117,6 +120,7 @@ window.addEventListener("DOMContentLoaded", function () {
             var obj = JSON.parse(value); //Convert string from localStorage back into an object with JSON.parse.
             var makeSubList = document.createElement('ul');
             makeLi.appendChild(makeSubList);
+            //getImage(obj.group[1], makeSubList);
             for (var n in obj){
                 var makeSubLi = document.createElement('li');
                 makeSubList.appendChild(makeSubLi);
@@ -131,7 +135,24 @@ window.addEventListener("DOMContentLoaded", function () {
           
             
           
-        };
+        }
+        //Get the image for the right category
+        function getImage(catName, makeSubList){
+            var imageLi = document.createElement('li');
+            makeSubList.appendChild(imageLi);
+            var newImg = document.createElement('img');
+            var setSrc = newImg.setAttribute("src", "images/"+ catName +".png");
+            imageLi.appendChild(newImg);
+        }
+        //Auto Populate Local Storage
+        function autoFillData(){
+            //The actual JSON Object data required for this to work is coming form our json.js file which is loaded form the HTML page
+            //Store JSON Object into Local Storage
+            for(var n in json){
+                var id = Math.floor(Math.random()*100000001);
+                localStorage.setItem(id, JSON.stringify(json[n]));
+            }
+        }
         //Create Edit and Delete links for each stored item when displayed
         function makeItemLinks(key, linksLi ){
             //Add edit single item link
